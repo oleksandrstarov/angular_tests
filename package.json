@@ -1,0 +1,22 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oleksandrstarov/angular_tests.git"
+  },
+  "author": "OS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oleksandrstarov/angular_tests/issues"
+  },
+  "homepage": "https://github.com/oleksandrstarov/angular_tests#readme",
+  "dependencies": {
+    "bower": "^1.7.9"
+  }
+}
