@@ -11,6 +11,7 @@ module.exports = function (grunt) {
   });
 
     
+   
     
     
   // Define the configuration for all the tasks
@@ -106,9 +107,17 @@ module.exports = function (grunt) {
             src: [ 'dist/']
         }
     },
+    ngAnnotate: {
+        options: {
+            // Task-specific options go here. 
+        },
+        your_target: {
+            // Target-specific file lists and/or options go here. 
+        },
+    },
     
     useminPrepare: {
-        html: 'app/menu.html',
+        html: ['app/menu.html', 'app/contactus.html', 'app/dishdetail.html'],
         options: {
             dest: 'dist'
         }
@@ -147,6 +156,8 @@ module.exports = function (grunt) {
             }]
         }
     },
+    
+    
       // Usemin
       // Replaces all assets with their revved version in html and css files.
       // options.assetDirs contains the directories for finding the assets
@@ -160,6 +171,8 @@ module.exports = function (grunt) {
     }
   });
   
+   grunt.loadNpmTasks('grunt-ng-annotate');
+  
   grunt.registerTask('build', [
      'clean',
     'jshint',
@@ -169,6 +182,7 @@ module.exports = function (grunt) {
     'uglify',
     'copy',
     'filerev',
+    'ngAnnotate',
     'usemin'
   ]);
 

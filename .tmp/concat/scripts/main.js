@@ -316,10 +316,11 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
 
 angular.module('app',[])
 
-    .controller('menuController', function(){
-        this.tab = 1;
-        this.filtText = '';
-        var dishes = [
+    .controller('MenuController', ['$scope', function($scope){
+        $scope.tab = 1;
+        $scope.filtText = '';
+        $scope.showDetails = false;
+        $scope.dishes = [
                  {
                    name:'Uthapizza',
                    image: 'images/uthapizza.png',
@@ -357,29 +358,52 @@ angular.module('app',[])
                    comment: ''
                 }
                 ];
-        this.dishes = dishes;
         
-        this.select = function(setTab){
+        $scope.select = function(setTab){
             if (setTab === 2){
-                this.filtText = "appetizer";
+                $scope.filtText = "appetizer";
             }
             else if (setTab === 3){
-                this.filtText = "mains";
+                $scope.filtText = "mains";
             }
             else if (setTab === 4){
-                this.filtText = "dessert";
+                $scope.filtText = "dessert";
             }
             else{
-                this.filtText = "";
+                $scope.filtText = "";
             }
-            console.log(this.filtText);
-            this.tab = setTab;
+            $scope.tab = setTab;
         };
         
-        this.isSelected = function(checkTab){
-            return (this.tab === checkTab);
+        $scope.isSelected = function(checkTab){
+            return ($scope.tab === checkTab);
+        };
+        
+        $scope.toggleDetails = function(){
+            $scope.showDetails = !$scope.showDetails;  
         };
         
         
+    }])
+    
+    .controller('ContactController', ['$scope', function($scope){
+        $scope.feedback = {
+            mychanell:'',
+            firstName:'',
+            lastName:'',
+            agree:false,
+            email:''
+        };
+        var channels = [{value:'tel', label:'Tel.'},
+                        {value:'Email', label:'Email'}];
+        $scope.channels = channels;
+        $scope.invalidChanellSelection = false;
         
-    });
+    }])
+    
+    .controller('FeedbackController', ['$scope', function($scope){
+        $scope.sendFeedback = function(){
+            console.log($scope.feedback);  
+        };
+    }])
+;
