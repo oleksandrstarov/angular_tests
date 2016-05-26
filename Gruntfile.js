@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
     
    
-    
+grunt.loadNpmTasks('grunt-ng-annotate');
     
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -64,11 +64,11 @@ module.exports = function (grunt) {
             tasks: [ 'build' ]
         },
         scripts: {
-            files: ['app/scripts/app.js'],
+            files: ['app/scripts/*.js'],
             tasks:[ 'build']
         },
         styles: {
-            files: ['app/styles/mystyles.css'],
+            files: ['app/styles/*.css'],
             tasks:['build']
         },
         livereload: {
@@ -107,19 +107,20 @@ module.exports = function (grunt) {
             src: [ 'dist/']
         }
     },
-    ngAnnotate: {
-        options: {
-            // Task-specific options go here. 
-        },
-        your_target: {
-            // Target-specific file lists and/or options go here. 
-        },
-    },
+    
     
     useminPrepare: {
-        html: ['app/menu.html', 'app/contactus.html', 'app/dishdetail.html'],
+        html: ['app/index.html'],
         options: {
             dest: 'dist'
+        }
+    },
+    ngAnnotate: {
+        options: {
+
+        },
+        dist: {
+            
         }
     },
       // Concat
@@ -171,18 +172,20 @@ module.exports = function (grunt) {
     }
   });
   
-   grunt.loadNpmTasks('grunt-ng-annotate');
+ 
   
   grunt.registerTask('build', [
      'clean',
     'jshint',
+    
     'useminPrepare',
+    'ngAnnotate',
     'concat',
     'cssmin',
     'uglify',
     'copy',
     'filerev',
-    'ngAnnotate',
+    
     'usemin'
   ]);
 
